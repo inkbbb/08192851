@@ -1,10 +1,10 @@
 #include<iostream>
 //#include<bits/stdc++.h>
 using namespace std;
-int Max = 0; // ´æ×î´óÊı 
-int(*p)[9] = new int[9][9]; // ´æ·Å¼üÅÌ 
-int(*check)[17] = new int[3][17]; // ´æ·ÅÁĞºÍÁ½¸ö¶Ô½ÇÏßµÄÊ¹ÓÃÇé¿ö 
-int* tmp = new int[10]; //±ê¼Ç»ÊºóµÄÎ»ÖÃÎª(i, tmp[i]) 
+int Max = 0; // å­˜æœ€å¤§æ•° 
+int(*p)[9] = new int[9][9]; // å­˜æ”¾é”®ç›˜ 
+int(*check)[17] = new int[3][17]; // å­˜æ”¾åˆ—å’Œä¸¤ä¸ªå¯¹è§’çº¿çš„ä½¿ç”¨æƒ…å†µ 
+int* tmp = new int[10]; //æ ‡è®°çš‡åçš„ä½ç½®ä¸º(i, tmp[i]) 
 void DFS(int i) {
 	if (i > 8) {
 		int x = 0;
@@ -16,10 +16,10 @@ void DFS(int i) {
 	for (int j = 1; j <= 8; j++) {
 		if (check[0][j] != 1 && check[1][i + j] != 1 && check[2][i - j + 8] != 1) {
 			tmp[i] = j;
-			// ×ß¹ıµÄÂ·¶¼±ê¼ÇÎª 1
+			// èµ°è¿‡çš„è·¯éƒ½æ ‡è®°ä¸º 1
 			check[0][j] = check[1][i + j] = check[2][i - j + 8] = 1;
 			DFS(i + 1);
-			// ·µ»ØÉÏÒ»´Î×´Ì¬ 
+			// è¿”å›ä¸Šä¸€æ¬¡çŠ¶æ€ 
 			check[0][j] = check[1][i + j] = check[2][i - j + 8] = 0;
 		}
 	}
@@ -28,7 +28,7 @@ int main() {
 	int k;
 	cin >> k;
 	while (k--) {
-		// ³õÊ¼»¯ 
+		// åˆå§‹åŒ– 
 		Max = 0;
 		memset(tmp, 0, 10);
 		for (int i = 1; i <= 8; i++) {
@@ -37,9 +37,10 @@ int main() {
 			}
 			if (i < 4) memset(check[i - 1], 0, 17);
 		}
-		// »ØËİ 
+		// å›æº¯ 
 		DFS(1);
 		cout << Max << endl;
+		cout << "æµ‹è¯•" << endl;
 	}
 	return 0;
 }
